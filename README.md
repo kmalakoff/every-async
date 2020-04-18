@@ -18,7 +18,7 @@ function neverReachHere(callback) {
   callback(null, true)
 }
 
-every([doSomething, stopAfterThisOne, neverReachHere], function(err, result) {
+every(doSomething, stopAfterThisOne, neverReachHere, function(err, result) {
   assert.ok(!err);
   assert.equal(result, false)
 })

@@ -21,7 +21,7 @@ describe('every', function () {
       callback(null, true);
     }
 
-    every([doSomething, thenThisOne, finallyThisOne], function (err, result) {
+    every(doSomething, thenThisOne, finallyThisOne, function (err, result) {
       assert.ok(!err);
       assert.equal(result, true);
       assert.equal(counter, 3);
@@ -46,7 +46,7 @@ describe('every', function () {
       callback(null, true);
     }
 
-    every([doSomething, stopAfterThisOne, neverReachHere], function (err, result) {
+    every(doSomething, stopAfterThisOne, neverReachHere, function (err, result) {
       assert.ok(!err);
       assert.equal(result, false);
       assert.equal(counter, 2);
