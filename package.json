@@ -1,6 +1,6 @@
 {
   "name": "every-async",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Calls every callback and keeps calling while the return value is true",
   "main": "index.js",
   "engines": {
