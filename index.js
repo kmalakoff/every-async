@@ -42,6 +42,13 @@ module.exports = function every(fns, arg1, arg2, arg3, arg4, arg5, arg6, callbac
         fns[index](arg1, arg2, arg3, arg4, arg5, arg6, next);
       };
       break;
+    default:
+      var args = Array.prototype.slice.call(arguments, 1);
+      callback = args.pop();
+      args.push(next);
+      call = function calln() {
+        fns[index].apply(null, args);
+      };
   }
 
   var index = -1;

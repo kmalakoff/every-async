@@ -104,6 +104,18 @@ describe('every', function () {
         done();
       });
     });
+
+    it('7 arguments', function (done) {
+      args = [];
+      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, 6, 7, function (err, result) {
+        assert.ok(!err);
+        assert.equal(args.length, 3);
+        args.forEach(function (params) {
+          assert.deepEqual(params, [1, 2, 3, 4, 5, 6, 7]);
+        });
+        done();
+      });
+    });
   });
 
   describe('stop after false', function () {
@@ -207,6 +219,18 @@ describe('every', function () {
         done();
       });
     });
+
+    it('7 arguments', function (done) {
+      args = [];
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, 7, function (err, result) {
+        assert.ok(!err);
+        assert.equal(args.length, 2);
+        args.forEach(function (params) {
+          assert.deepEqual(params, [1, 2, 3, 4, 5, 6, 7]);
+        });
+        done();
+      });
+    });
   });
 
   describe('stop after error', function () {
@@ -306,6 +330,18 @@ describe('every', function () {
         assert.equal(args.length, 2);
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2, 3, 4, 5, 6]);
+        });
+        done();
+      });
+    });
+
+    it('7 arguments', function (done) {
+      args = [];
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, 7, function (err, result) {
+        assert.ok(err);
+        assert.equal(args.length, 2);
+        args.forEach(function (params) {
+          assert.deepEqual(params, [1, 2, 3, 4, 5, 6, 7]);
         });
         done();
       });
