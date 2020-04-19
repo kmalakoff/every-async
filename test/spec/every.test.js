@@ -21,7 +21,7 @@ describe('every', function () {
       args[args.length - 1].pop()(null, true);
     }
 
-    it('0 arguments', function () {
+    it('0 arguments', function (done) {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], function (err, result) {
         assert.ok(!err);
@@ -29,10 +29,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, []);
         });
+        done();
       });
     });
 
-    it('1 argument', function () {
+    it('1 argument', function (done) {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, function (err, result) {
         assert.ok(!err);
@@ -40,10 +41,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1]);
         });
+        done();
       });
     });
 
-    it('2 arguments', function () {
+    it('2 arguments', function (done) {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, function (err, result) {
         assert.ok(!err);
@@ -51,10 +53,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2]);
         });
+        done();
       });
     });
 
-    it('3 arguments', function () {
+    it('3 arguments', function (done) {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, function (err, result) {
         assert.ok(!err);
@@ -62,10 +65,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2, 3]);
         });
+        done();
       });
     });
 
-    it('4 arguments', function () {
+    it('4 arguments', function (done) {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, function (err, result) {
         assert.ok(!err);
@@ -73,10 +77,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2, 3, 4]);
         });
+        done();
       });
     });
 
-    it('5 arguments', function () {
+    it('5 arguments', function (done) {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, function (err, result) {
         assert.ok(!err);
@@ -84,6 +89,19 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2, 3, 4, 5]);
         });
+        done();
+      });
+    });
+
+    it('6 arguments', function (done) {
+      args = [];
+      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, 6, function (err, result) {
+        assert.ok(!err);
+        assert.equal(args.length, 3);
+        args.forEach(function (params) {
+          assert.deepEqual(params, [1, 2, 3, 4, 5, 6]);
+        });
+        done();
       });
     });
   });
@@ -106,7 +124,7 @@ describe('every', function () {
       args[args.length - 1].pop()(null, true);
     }
 
-    it('0 arguments', function () {
+    it('0 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], function (err, result) {
         assert.ok(!err);
@@ -114,10 +132,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, []);
         });
+        done();
       });
     });
 
-    it('1 arguments', function () {
+    it('1 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, function (err, result) {
         assert.ok(!err);
@@ -125,10 +144,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1]);
         });
+        done();
       });
     });
 
-    it('2 arguments', function () {
+    it('2 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, function (err, result) {
         assert.ok(!err);
@@ -136,10 +156,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2]);
         });
+        done();
       });
     });
 
-    it('3 arguments', function () {
+    it('3 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, function (err, result) {
         assert.ok(!err);
@@ -147,10 +168,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2, 3]);
         });
+        done();
       });
     });
 
-    it('4 arguments', function () {
+    it('4 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, function (err, result) {
         assert.ok(!err);
@@ -158,10 +180,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2, 3, 4]);
         });
+        done();
       });
     });
 
-    it('5 arguments', function () {
+    it('5 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, function (err, result) {
         assert.ok(!err);
@@ -169,6 +192,19 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2, 3, 4, 5]);
         });
+        done();
+      });
+    });
+
+    it('6 arguments', function (done) {
+      args = [];
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, function (err, result) {
+        assert.ok(!err);
+        assert.equal(args.length, 2);
+        args.forEach(function (params) {
+          assert.deepEqual(params, [1, 2, 3, 4, 5, 6]);
+        });
+        done();
       });
     });
   });
@@ -191,7 +227,7 @@ describe('every', function () {
       args[args.length - 1].pop()(null, true);
     }
 
-    it('0 arguments', function () {
+    it('0 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], function (err, result) {
         assert.ok(err);
@@ -199,10 +235,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, []);
         });
+        done();
       });
     });
 
-    it('1 arguments', function () {
+    it('1 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, function (err, result) {
         assert.ok(err);
@@ -210,10 +247,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1]);
         });
+        done();
       });
     });
 
-    it('2 arguments', function () {
+    it('2 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, function (err, result) {
         assert.ok(err);
@@ -221,10 +259,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2]);
         });
+        done();
       });
     });
 
-    it('3 arguments', function () {
+    it('3 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, function (err, result) {
         assert.ok(err);
@@ -232,10 +271,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2, 3]);
         });
+        done();
       });
     });
 
-    it('4 arguments', function () {
+    it('4 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, function (err, result) {
         assert.ok(err);
@@ -243,10 +283,11 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2, 3, 4]);
         });
+        done();
       });
     });
 
-    it('5 arguments', function () {
+    it('5 arguments', function (done) {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, function (err, result) {
         assert.ok(err);
@@ -254,6 +295,19 @@ describe('every', function () {
         args.forEach(function (params) {
           assert.deepEqual(params, [1, 2, 3, 4, 5]);
         });
+        done();
+      });
+    });
+
+    it('6 arguments', function (done) {
+      args = [];
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, function (err, result) {
+        assert.ok(err);
+        assert.equal(args.length, 2);
+        args.forEach(function (params) {
+          assert.deepEqual(params, [1, 2, 3, 4, 5, 6]);
+        });
+        done();
       });
     });
   });
