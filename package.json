@@ -11,7 +11,7 @@
   "homepage": "https://github.com/kmalakoff/every-async",
   "repository": {
     "type": "git",
-    "url": "git@github.com:kmalakoff/every-async.git"
+    "url": "git+ssh://git@github.com/kmalakoff/every-async.git"
   },
   "license": "MIT",
   "author": "Kevin Malakoff <kmalakoff@gmail.com> (https://github.com/kmalakoff)",
