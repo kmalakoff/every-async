@@ -1,116 +1,126 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var every = require('../..');
+const every = require('every-async');
 
-describe('every', function () {
-  describe('process all', function () {
-    var args = [];
+describe('every', () => {
+  describe('process all', () => {
+    let args = [];
 
     function doSomething() {
+      // biome-ignore lint/style/noArguments: <explanation>
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
     function thenThisOne() {
+      // biome-ignore lint/style/noArguments: <explanation>
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
     function finallyThisOne() {
+      // biome-ignore lint/style/noArguments: <explanation>
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
-    it('0 arguments', function (done) {
+    it('0 arguments', (done) => {
       args = [];
-      every([doSomething, thenThisOne, finallyThisOne], function (err, result) {
-        assert.ok(!err);
+      every([doSomething, thenThisOne, finallyThisOne], (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 3);
-        args.forEach(function (params) {
+        args.forEach((params) => {
           assert.deepEqual(params, []);
         });
         done();
       });
     });
 
-    it('1 argument', function (done) {
+    it('1 argument', (done) => {
       args = [];
-      every([doSomething, thenThisOne, finallyThisOne], 1, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, thenThisOne, finallyThisOne], 1, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 3);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1]);
         });
         done();
       });
     });
 
-    it('2 arguments', function (done) {
+    it('2 arguments', (done) => {
       args = [];
-      every([doSomething, thenThisOne, finallyThisOne], 1, 2, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, thenThisOne, finallyThisOne], 1, 2, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 3);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2]);
         });
         done();
       });
     });
 
-    it('3 arguments', function (done) {
+    it('3 arguments', (done) => {
       args = [];
-      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 3);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3]);
         });
         done();
       });
     });
 
-    it('4 arguments', function (done) {
+    it('4 arguments', (done) => {
       args = [];
-      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 3);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4]);
         });
         done();
       });
     });
 
-    it('5 arguments', function (done) {
+    it('5 arguments', (done) => {
       args = [];
-      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 3);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4, 5]);
         });
         done();
       });
     });
 
-    it('6 arguments', function (done) {
+    it('6 arguments', (done) => {
       args = [];
-      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, 6, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, 6, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 3);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4, 5, 6]);
         });
         done();
       });
     });
 
-    it('7 arguments', function (done) {
+    it('7 arguments', (done) => {
       args = [];
-      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, 6, 7, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, 6, 7, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 3);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4, 5, 6, 7]);
         });
         done();
@@ -118,114 +128,125 @@ describe('every', function () {
     });
   });
 
-  describe('stop after false', function () {
-    var args = [];
+  describe('stop after false', () => {
+    let args = [];
 
     function doSomething() {
+      // biome-ignore lint/style/noArguments: <explanation>
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
     function stopAfterThisOne() {
+      // biome-ignore lint/style/noArguments: <explanation>
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, false);
     }
 
-    function neverReachHere(callback) {
+    function neverReachHere(_callback) {
+      // biome-ignore lint/style/noArguments: <explanation>
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
-    it('0 arguments', function (done) {
+    it('0 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], function (err, result) {
-        assert.ok(!err);
+      every([doSomething, stopAfterThisOne, neverReachHere], (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, []);
         });
         done();
       });
     });
 
-    it('1 arguments', function (done) {
+    it('1 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1]);
         });
         done();
       });
     });
 
-    it('2 arguments', function (done) {
+    it('2 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2]);
         });
         done();
       });
     });
 
-    it('3 arguments', function (done) {
+    it('3 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3]);
         });
         done();
       });
     });
 
-    it('4 arguments', function (done) {
+    it('4 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4]);
         });
         done();
       });
     });
 
-    it('5 arguments', function (done) {
+    it('5 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4, 5]);
         });
         done();
       });
     });
 
-    it('6 arguments', function (done) {
+    it('6 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4, 5, 6]);
         });
         done();
       });
     });
 
-    it('7 arguments', function (done) {
+    it('7 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, 7, function (err, result) {
-        assert.ok(!err);
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, 7, (err, _result) => {
+        assert.ok(!err, err ? err.message : '');
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4, 5, 6, 7]);
         });
         done();
@@ -233,114 +254,125 @@ describe('every', function () {
     });
   });
 
-  describe('stop after error', function () {
-    var args = [];
+  describe('stop after error', () => {
+    let args = [];
 
     function doSomething() {
+      // biome-ignore lint/style/noArguments: <explanation>
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
     function stopAfterThisOne() {
+      // biome-ignore lint/style/noArguments: <explanation>
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(new Error('Failed'), true);
     }
 
-    function neverReachHere(callback) {
+    function neverReachHere(_callback) {
+      // biome-ignore lint/style/noArguments: <explanation>
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
-    it('0 arguments', function (done) {
+    it('0 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], function (err, result) {
+      every([doSomething, stopAfterThisOne, neverReachHere], (err, _result) => {
         assert.ok(err);
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, []);
         });
         done();
       });
     });
 
-    it('1 arguments', function (done) {
+    it('1 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, function (err, result) {
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, (err, _result) => {
         assert.ok(err);
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1]);
         });
         done();
       });
     });
 
-    it('2 arguments', function (done) {
+    it('2 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, function (err, result) {
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, (err, _result) => {
         assert.ok(err);
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2]);
         });
         done();
       });
     });
 
-    it('3 arguments', function (done) {
+    it('3 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, function (err, result) {
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, (err, _result) => {
         assert.ok(err);
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3]);
         });
         done();
       });
     });
 
-    it('4 arguments', function (done) {
+    it('4 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, function (err, result) {
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, (err, _result) => {
         assert.ok(err);
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4]);
         });
         done();
       });
     });
 
-    it('5 arguments', function (done) {
+    it('5 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, function (err, result) {
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, (err, _result) => {
         assert.ok(err);
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4, 5]);
         });
         done();
       });
     });
 
-    it('6 arguments', function (done) {
+    it('6 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, function (err, result) {
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, (err, _result) => {
         assert.ok(err);
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4, 5, 6]);
         });
         done();
       });
     });
 
-    it('7 arguments', function (done) {
+    it('7 arguments', (done) => {
       args = [];
-      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, 7, function (err, result) {
+      every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, 7, (err, _result) => {
         assert.ok(err);
         assert.equal(args.length, 2);
-        args.forEach(function (params) {
+
+        args.forEach((params) => {
           assert.deepEqual(params, [1, 2, 3, 4, 5, 6, 7]);
         });
         done();

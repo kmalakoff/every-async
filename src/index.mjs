@@ -30,8 +30,9 @@ function calln(args, fn) {
   fn.apply(null, args);
 }
 
-module.exports = function every(fns, arg1, arg2, arg3, arg4, arg5, arg6, callback) {
-  var call;
+export default function every(fns, arg1, arg2, arg3, arg4, arg5, arg6, callback) {
+  let call;
+  // biome-ignore lint/style/noArguments: <explanation>
   switch (arguments.length) {
     case 2:
       call = call0.bind(null, next);
@@ -60,17 +61,19 @@ module.exports = function every(fns, arg1, arg2, arg3, arg4, arg5, arg6, callbac
     case 8:
       call = call6.bind(null, arg1, arg2, arg3, arg4, arg5, arg6, next);
       break;
-    default:
-      var args = Array.prototype.slice.call(arguments, 1);
+    default: {
+      // biome-ignore lint/style/noArguments: <explanation>
+      const args = Array.prototype.slice.call(arguments, 1);
       callback = args.pop();
       args.push(next);
       call = calln.bind(null, args);
+    }
   }
 
-  var index = -1;
+  let index = -1;
   function next(err, result) {
     if (err || !result || ++index >= fns.length) return callback(err, result);
     call(fns[index]);
   }
   next(null, true);
-};
+}
