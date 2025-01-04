@@ -1,1 +1,1 @@
-ignores: ["depcheck"]
+ignores: ["every-async", "@types/*", "@biomejs/*"]
