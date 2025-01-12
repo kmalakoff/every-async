@@ -19,7 +19,6 @@ function neverReachHere(callback) {
 }
 
 every([doSomething, stopAfterThisOne, neverReachHere], function(err, result) {
-  assert.ok(!err, err ? err.message : '');
   assert.equal(result, false)
 })
 
@@ -38,7 +37,6 @@ function neverReachHere2(arg1, arg2, callback) {
 }
 
 every([doSomething2, stopAfterThisOne2, neverReachHere2], 1, 2, function(err, result) {
-  assert.ok(!err, err ? err.message : '');
   assert.equal(result, false)
 })
 
