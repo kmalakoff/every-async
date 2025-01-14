@@ -1,1 +1,1 @@
-ignores: ["every-async", "@types/*", "@biomejs/*"]
+ignores: ["@types/*", "every-async", "@biomejs/*"]
