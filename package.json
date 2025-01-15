@@ -1,6 +1,6 @@
 {
   "name": "every-async",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "Calls every callback and keeps calling while the return value is true",
   "keywords": [
     "every",
