@@ -30,8 +30,11 @@ function calln(args, fn) {
   fn.apply(null, args);
 }
 
-export default function every(fns, arg1, arg2, arg3, arg4, arg5, arg6, callback) {
-  let call;
+export type Callback = (error?: Error, value?: unknown) => void;
+export type CallFn = (cb: Callback) => void;
+
+export default function every(fns: Array<Callback>, arg1, arg2, arg3, arg4, arg5, arg6, callback) {
+  let call: CallFn;
   // biome-ignore lint/style/noArguments: <explanation>
   switch (arguments.length) {
     case 2:
