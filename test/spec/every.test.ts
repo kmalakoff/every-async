@@ -1,6 +1,7 @@
-const assert = require('assert');
+import assert from 'assert';
 
-const every = require('every-async');
+// @ts-ignore
+import every from 'every-async';
 
 describe('every', () => {
   describe('process all', () => {
