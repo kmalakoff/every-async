@@ -32,34 +32,36 @@ function calln(args, fn) {
 
 export type Callback = (error?: Error, value?: unknown) => void;
 export type CallFn = (cb: Callback) => void;
+type Optional = Callback | unknown;
 
-export default function every(fns: Callback[], arg1, arg2, arg3, arg4, arg5, arg6, callback) {
+export default function every(fns: Callback[], callback: Callback): undefined;
+export default function every(fns: Callback[], arg1: unknown, callback: Callback): undefined;
+export default function every(fns: Callback[], arg1: unknown, arg2: unknown, callback: Callback): undefined;
+export default function every(fns: Callback[], arg1: unknown, arg2: unknown, arg3: unknown, callback: Callback): undefined;
+export default function every(fns: Callback[], arg1: unknown, arg2: unknown, arg3: unknown, arg4: unknown, callback: Callback): undefined;
+export default function every(fns: Callback[], arg1: unknown, arg2: unknown, arg3: unknown, arg4: unknown, arg5: unknown, callback: Callback): undefined;
+export default function every(fns: Callback[], arg1: unknown, arg2: unknown, arg3: unknown, arg4: unknown, arg5: unknown, arg6: unknown, callback: Callback): undefined;
+export default function every(fns: Callback[], arg1?: Optional, arg2?: Optional, arg3?: Optional, arg4?: Optional, arg5?: Optional, arg6?: Optional, _callback?: Optional): undefined {
   let call: CallFn;
   // biome-ignore lint/style/noArguments: <explanation>
   switch (arguments.length) {
     case 2:
       call = call0.bind(null, next);
-      callback = arg1;
       break;
     case 3:
       call = call1.bind(null, arg1, next);
-      callback = arg2;
       break;
     case 4:
       call = call2.bind(null, arg1, arg2, next);
-      callback = arg3;
       break;
     case 5:
       call = call3.bind(null, arg1, arg2, arg3, next);
-      callback = arg4;
       break;
     case 6:
       call = call4.bind(null, arg1, arg2, arg3, arg4, next);
-      callback = arg5;
       break;
     case 7:
       call = call5.bind(null, arg1, arg2, arg3, arg4, arg5, next);
-      callback = arg6;
       break;
     case 8:
       call = call6.bind(null, arg1, arg2, arg3, arg4, arg5, arg6, next);
@@ -67,15 +69,16 @@ export default function every(fns: Callback[], arg1, arg2, arg3, arg4, arg5, arg
     default: {
       // biome-ignore lint/style/noArguments: <explanation>
       const args = Array.prototype.slice.call(arguments, 1);
-      callback = args.pop();
-      args.push(next);
+      args[args.length - 1] = next; // replace callback with next
       call = calln.bind(null, args);
     }
   }
 
+  // biome-ignore lint/style/noArguments: <explanation>
+  const callback_ = arguments[arguments.length - 1] as Callback;
   let index = -1;
   function next(err, result) {
-    if (err || !result || ++index >= fns.length) return callback(err, result);
+    if (err || !result || ++index >= fns.length) return callback_(err, result);
     call(fns[index]);
   }
   next(null, true);
