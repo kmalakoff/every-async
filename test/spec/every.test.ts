@@ -8,19 +8,19 @@ describe('every', () => {
     let args = [];
 
     function doSomething() {
-      // biome-ignore lint/style/noArguments: <explanation>
+      // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
     function thenThisOne() {
-      // biome-ignore lint/style/noArguments: <explanation>
+      // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
     function finallyThisOne() {
-      // biome-ignore lint/style/noArguments: <explanation>
+      // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
@@ -133,19 +133,19 @@ describe('every', () => {
     let args = [];
 
     function doSomething() {
-      // biome-ignore lint/style/noArguments: <explanation>
+      // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
     function stopAfterThisOne() {
-      // biome-ignore lint/style/noArguments: <explanation>
+      // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, false);
     }
 
     function neverReachHere(_callback) {
-      // biome-ignore lint/style/noArguments: <explanation>
+      // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
@@ -259,19 +259,19 @@ describe('every', () => {
     let args = [];
 
     function doSomething() {
-      // biome-ignore lint/style/noArguments: <explanation>
+      // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
 
     function stopAfterThisOne() {
-      // biome-ignore lint/style/noArguments: <explanation>
+      // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(new Error('Failed'), true);
     }
 
     function neverReachHere(_callback) {
-      // biome-ignore lint/style/noArguments: <explanation>
+      // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
     }
