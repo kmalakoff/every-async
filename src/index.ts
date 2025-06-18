@@ -43,7 +43,7 @@ export default function every(fns: Callback[], arg1: unknown, arg2: unknown, arg
 export default function every(fns: Callback[], arg1: unknown, arg2: unknown, arg3: unknown, arg4: unknown, arg5: unknown, arg6: unknown, callback: Callback): undefined;
 export default function every(fns: Callback[], arg1?: Optional, arg2?: Optional, arg3?: Optional, arg4?: Optional, arg5?: Optional, arg6?: Optional, _callback?: Optional): undefined {
   let call: CallFn;
-  // biome-ignore lint/style/noArguments: <explanation>
+  // biome-ignore lint/complexity/noArguments: Apply arguments
   switch (arguments.length) {
     case 2:
       call = call0.bind(null, next);
@@ -67,14 +67,14 @@ export default function every(fns: Callback[], arg1?: Optional, arg2?: Optional,
       call = call6.bind(null, arg1, arg2, arg3, arg4, arg5, arg6, next);
       break;
     default: {
-      // biome-ignore lint/style/noArguments: <explanation>
+      // biome-ignore lint/complexity/noArguments: Apply arguments
       const args = Array.prototype.slice.call(arguments, 1);
       args[args.length - 1] = next; // replace callback with next
       call = calln.bind(null, args);
     }
   }
 
-  // biome-ignore lint/style/noArguments: <explanation>
+  // biome-ignore lint/complexity/noArguments: Apply arguments
   const callback_ = arguments[arguments.length - 1] as Callback;
   let index = -1;
   function next(err, result) {
