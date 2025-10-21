@@ -1,6 +1,5 @@
 import assert from 'assert';
 
-// @ts-ignore
 import every from 'every-async';
 
 describe('every', () => {
