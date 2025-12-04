@@ -1,1 +1,1 @@
-ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "every-async"]
+ignores: ["node-version-use", "ts-dev-stack", "every-async"]
