@@ -28,7 +28,7 @@ describe('every', () => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 3);
@@ -43,7 +43,7 @@ describe('every', () => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 3);
@@ -59,7 +59,7 @@ describe('every', () => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 3);
@@ -75,7 +75,7 @@ describe('every', () => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 3);
@@ -91,7 +91,7 @@ describe('every', () => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 3);
@@ -107,7 +107,7 @@ describe('every', () => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 3);
@@ -123,7 +123,7 @@ describe('every', () => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, 6, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 3);
@@ -139,7 +139,7 @@ describe('every', () => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, 6, 7, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 3);
@@ -177,7 +177,7 @@ describe('every', () => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 2);
@@ -193,7 +193,7 @@ describe('every', () => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 2);
@@ -209,7 +209,7 @@ describe('every', () => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 2);
@@ -225,7 +225,7 @@ describe('every', () => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 2);
@@ -241,7 +241,7 @@ describe('every', () => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 2);
@@ -257,7 +257,7 @@ describe('every', () => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 2);
@@ -273,7 +273,7 @@ describe('every', () => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 2);
@@ -289,7 +289,7 @@ describe('every', () => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, 7, (err, _result) => {
         if (err) {
-          done(err.message);
+          done(err);
           return;
         }
         assert.equal(args.length, 2);
