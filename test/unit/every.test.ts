@@ -4,7 +4,7 @@ import every from 'every-async';
 
 describe('every', () => {
   describe('process all', () => {
-    let args = [];
+    let args: any[][] = [];
 
     function doSomething() {
       // biome-ignore lint/complexity/noArguments: Apply arguments
@@ -27,10 +27,7 @@ describe('every', () => {
     it('0 arguments', (done) => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 3);
         args.forEach((params) => {
           assert.deepEqual(params, []);
@@ -42,10 +39,7 @@ describe('every', () => {
     it('1 argument', (done) => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 3);
 
         args.forEach((params) => {
@@ -58,10 +52,7 @@ describe('every', () => {
     it('2 arguments', (done) => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 3);
 
         args.forEach((params) => {
@@ -74,10 +65,7 @@ describe('every', () => {
     it('3 arguments', (done) => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 3);
 
         args.forEach((params) => {
@@ -90,10 +78,7 @@ describe('every', () => {
     it('4 arguments', (done) => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 3);
 
         args.forEach((params) => {
@@ -106,10 +91,7 @@ describe('every', () => {
     it('5 arguments', (done) => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 3);
 
         args.forEach((params) => {
@@ -122,10 +104,7 @@ describe('every', () => {
     it('6 arguments', (done) => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, 6, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 3);
 
         args.forEach((params) => {
@@ -138,10 +117,7 @@ describe('every', () => {
     it('7 arguments', (done) => {
       args = [];
       every([doSomething, thenThisOne, finallyThisOne], 1, 2, 3, 4, 5, 6, 7, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 3);
 
         args.forEach((params) => {
@@ -153,7 +129,7 @@ describe('every', () => {
   });
 
   describe('stop after false', () => {
-    let args = [];
+    let args: any[][] = [];
 
     function doSomething() {
       // biome-ignore lint/complexity/noArguments: Apply arguments
@@ -167,7 +143,7 @@ describe('every', () => {
       args[args.length - 1].pop()(null, false);
     }
 
-    function neverReachHere(_callback) {
+    function neverReachHere(_callback: unknown) {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
@@ -176,10 +152,7 @@ describe('every', () => {
     it('0 arguments', (done) => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 2);
 
         args.forEach((params) => {
@@ -192,10 +165,7 @@ describe('every', () => {
     it('1 arguments', (done) => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 2);
 
         args.forEach((params) => {
@@ -208,10 +178,7 @@ describe('every', () => {
     it('2 arguments', (done) => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 2);
 
         args.forEach((params) => {
@@ -224,10 +191,7 @@ describe('every', () => {
     it('3 arguments', (done) => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 2);
 
         args.forEach((params) => {
@@ -240,10 +204,7 @@ describe('every', () => {
     it('4 arguments', (done) => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 2);
 
         args.forEach((params) => {
@@ -256,10 +217,7 @@ describe('every', () => {
     it('5 arguments', (done) => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 2);
 
         args.forEach((params) => {
@@ -272,10 +230,7 @@ describe('every', () => {
     it('6 arguments', (done) => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 2);
 
         args.forEach((params) => {
@@ -288,10 +243,7 @@ describe('every', () => {
     it('7 arguments', (done) => {
       args = [];
       every([doSomething, stopAfterThisOne, neverReachHere], 1, 2, 3, 4, 5, 6, 7, (err, _result) => {
-        if (err) {
-          done(err);
-          return;
-        }
+        if (err) return done(err);
         assert.equal(args.length, 2);
 
         args.forEach((params) => {
@@ -303,7 +255,7 @@ describe('every', () => {
   });
 
   describe('stop after error', () => {
-    let args = [];
+    let args: any[][] = [];
 
     function doSomething() {
       // biome-ignore lint/complexity/noArguments: Apply arguments
@@ -317,7 +269,7 @@ describe('every', () => {
       args[args.length - 1].pop()(new Error('Failed'), true);
     }
 
-    function neverReachHere(_callback) {
+    function neverReachHere(_callback: unknown) {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
       args[args.length - 1].pop()(null, true);
