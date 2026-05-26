@@ -4,24 +4,24 @@ import every from 'every-async';
 
 describe('every', () => {
   describe('process all', () => {
-    let args: any[][] = [];
+    let args: ((...args: unknown[]) => void)[][] = [];
 
     function doSomething() {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
-      args[args.length - 1].pop()(null, true);
+      args[args.length - 1].pop()?.(null, true);
     }
 
     function thenThisOne() {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
-      args[args.length - 1].pop()(null, true);
+      args[args.length - 1].pop()?.(null, true);
     }
 
     function finallyThisOne() {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
-      args[args.length - 1].pop()(null, true);
+      args[args.length - 1].pop()?.(null, true);
     }
 
     it('0 arguments', (done) => {
@@ -129,24 +129,24 @@ describe('every', () => {
   });
 
   describe('stop after false', () => {
-    let args: any[][] = [];
+    let args: ((...args: unknown[]) => void)[][] = [];
 
     function doSomething() {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
-      args[args.length - 1].pop()(null, true);
+      args[args.length - 1].pop()?.(null, true);
     }
 
     function stopAfterThisOne() {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
-      args[args.length - 1].pop()(null, false);
+      args[args.length - 1].pop()?.(null, false);
     }
 
     function neverReachHere(_callback: unknown) {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
-      args[args.length - 1].pop()(null, true);
+      args[args.length - 1].pop()?.(null, true);
     }
 
     it('0 arguments', (done) => {
@@ -255,24 +255,24 @@ describe('every', () => {
   });
 
   describe('stop after error', () => {
-    let args: any[][] = [];
+    let args: ((...args: unknown[]) => void)[][] = [];
 
     function doSomething() {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
-      args[args.length - 1].pop()(null, true);
+      args[args.length - 1].pop()?.(null, true);
     }
 
     function stopAfterThisOne() {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
-      args[args.length - 1].pop()(new Error('Failed'), true);
+      args[args.length - 1].pop()?.(new Error('Failed'), true);
     }
 
     function neverReachHere(_callback: unknown) {
       // biome-ignore lint/complexity/noArguments: Apply arguments
       args.push(Array.prototype.slice.call(arguments, 0));
-      args[args.length - 1].pop()(null, true);
+      args[args.length - 1].pop()?.(null, true);
     }
 
     it('0 arguments', (done) => {
