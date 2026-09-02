@@ -1,42 +1,46 @@
-module.exports = function every(fns, arg1, arg2, arg3, callback) {
-  function call0() {
-    fns[index](next);
-  }
-  function call1() {
-    fns[index](arg1, next);
-  }
-  function call2() {
-    fns[index](arg1, arg2, next);
-  }
-  function call3() {
-    fns[index](arg1, arg2, arg3, next);
-  }
-  function calln(args) {
-    fns[index].apply(null, args);
-  }
-
+module.exports = function every(fns, arg1, arg2, arg3, arg4, arg5, arg6, callback) {
   var call;
   switch (arguments.length) {
     case 2:
-      call = call0;
+      call = function call0() {
+        fns[index](next);
+      };
       callback = arg1;
       break;
     case 3:
-      call = call1;
+      call = function call1() {
+        fns[index](arg1, next);
+      };
       callback = arg2;
       break;
     case 4:
-      call = call2;
+      call = function call2() {
+        fns[index](arg1, arg2, next);
+      };
       callback = arg3;
       break;
     case 5:
-      call = call3;
+      call = function call3() {
+        fns[index](arg1, arg2, arg3, next);
+      };
+      callback = arg4;
       break;
-    default:
-      var args = Array.prototype.slice.call(arguments, 1);
-      callback = args.pop();
-      args.push(next);
-      call = calln.bind(null, args);
+    case 6:
+      call = function call4() {
+        fns[index](arg1, arg2, arg3, arg4, next);
+      };
+      callback = arg5;
+      break;
+    case 7:
+      call = function call5() {
+        fns[index](arg1, arg2, arg3, arg4, arg5, next);
+      };
+      callback = arg6;
+      break;
+    case 8:
+      call = function call6() {
+        fns[index](arg1, arg2, arg3, arg4, arg5, arg6, next);
+      };
       break;
   }
 
