@@ -1,1 +1,1 @@
-ignores: ["node-version-use", "ts-dev-stack", "every-async"]
+ignores: ["every-async", "node-version-use", "ts-dev-stack"]

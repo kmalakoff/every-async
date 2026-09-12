@@ -1,6 +1,10 @@
-## every-async
+# every-async
 
 Calls every callback and keeps calling while the return value is true.
+
+```bash
+npm install every-async
+```js
 
 ```
 var every = require('every-async');
@@ -11,7 +15,7 @@ function doSomething(callback) {
 }
 
 function stopAfterThisOne(callback) {
-  callback(null, true)
+  callback(null, false)
 }
 
 function neverReachHere(callback) {
@@ -21,23 +25,7 @@ function neverReachHere(callback) {
 every([doSomething, stopAfterThisOne, neverReachHere], function(err, result) {
   assert.equal(result, false)
 })
-
-/* pass any number of arguments */
-
-function doSomething2(arg1, arg2, callback) {
-  callback(null, true)
-}
-
-function stopAfterThisOne2(arg1, arg2, callback) {
-  callback(null, true)
-}
-
-function neverReachHere2(arg1, arg2, callback) {
-  callback(null, true)
-}
-
-every([doSomething2, stopAfterThisOne2, neverReachHere2], 1, 2, function(err, result) {
-  assert.equal(result, false)
-})
-
 ```
+
+Arguments between the callback array and final callback are passed to every
+function. The sequence stops on the first error or falsy result.
